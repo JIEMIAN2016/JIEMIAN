@@ -6,8 +6,10 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ListView;
 
 import com.example.chen.jiemian.R;
+import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.handmark.pulltorefresh.library.PullToRefreshListView;
 
 /**
@@ -30,6 +32,8 @@ public class MyVideoFragment extends Fragment {
     }
 
     private void initView() {
-
+        refreshListView = (PullToRefreshListView) view.findViewById(R.id.my_video_listview);
+        refreshListView.setMode(PullToRefreshBase.Mode.BOTH);
+        ListView refreshableView = refreshListView.getRefreshableView();
     }
 }

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="8dp"
+        android:background="@color/colorWhite"/>
+    <VideoView
+        android:id="@+id/video_item_video"
+        android:layout_width="match_parent"
+        android:layout_height="200dp" />
+    <TextView
+        android:id="@+id/video_item_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:maxLines="2"
+        android:layout_margin="10dp"
+        android:text="着重于长见识了，这嗯个死的还物流发货深V领SEO反击速度我会"
+        style="@style/text_drawer_main"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:orientation="horizontal">
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginLeft="10dp"
+                android:src="@mipmap/personal_center_unsign"/>
+        </LinearLayout>
+        <TextView
+            android:id="@+id/video_item_updatetime"
+            android:layout_width="80dp"
+            android:layout_height="match_parent"
+            android:text="2小时前"
+            android:layout_marginLeft="10dp"/>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <TextView
+                android:id="@+id/video_item_comments"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:drawableLeft="@mipmap/newslist_comment_icon"
+                android:text="1"
+                android:layout_alignParentRight="true"
+                android:drawablePadding="10dp"
+                android:layout_gravity="left"
+                android:layout_marginRight="10dp"/>
+        </RelativeLayout>
+
+    </LinearLayout>
+</LinearLayout>
