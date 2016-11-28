@@ -60,7 +60,7 @@ public class VideoFragment extends Fragment implements RadioGroup.OnCheckedChang
     public void onCheckedChanged(RadioGroup group, int checkedId) {
         switch (checkedId) {
             case R.id.video_video:
-                gif.stop();
+                gif.isInit(false);
                 Constant.IS_PLAY_VIDEO=false;
                 changeFragment(MyVideoFragment.TAG,MyVideoFragment.class);
                 break;

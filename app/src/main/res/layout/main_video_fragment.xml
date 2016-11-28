@@ -9,29 +9,36 @@
         android:layout_height="50dp">
         <RadioGroup
             android:id="@+id/video_switch_fragment"
-            android:layout_width="160dp"
-            android:layout_height="20dp"
+            android:layout_width="172dp"
+            android:layout_height="22dp"
             android:orientation="horizontal"
             android:background="@drawable/back_circle_ring"
             android:layout_centerInParent="true"
-            >
+            android:paddingLeft="1dp">
             <RadioButton
                 android:id="@+id/video_video"
-                android:layout_width="78dp"
-                android:layout_height="18dp"
+                android:layout_width="85dp"
+                android:layout_height="20dp"
                 android:button="@null"
+                android:text="视频"
+                android:textColor="@drawable/media_switch_textcolor_selector"
+                android:gravity="center"
+                android:textSize="12sp"
+                android:checked="true"
                 android:layout_gravity="center_vertical"
-                android:layout_margin="1dp"
                 android:background="@drawable/media_top_bakcground_selector"
-                android:layout_alignParentLeft="true"
                 />
             <RadioButton
                 android:id="@+id/video_voice"
-                android:layout_width="78dp"
-                android:layout_height="18dp"
+                android:layout_width="85dp"
+                android:layout_height="20dp"
                 android:layout_gravity="center_vertical"
                 android:button="@null"
-                android:layout_margin="1dp"
+                android:textColor="@drawable/media_switch_textcolor_selector"
+                android:gravity="center"
+                android:text="音频"
+
+                android:textSize="12sp"
                 android:background="@drawable/media_top_bakcground_selector"
                 />
         </RadioGroup>

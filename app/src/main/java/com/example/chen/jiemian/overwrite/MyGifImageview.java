@@ -23,17 +23,17 @@ import java.lang.reflect.Field;
  */
 public class MyGifImageview extends ImageView {
     private Movie mMovie;
-    private boolean isPlaying=false;
-    private int oldwidth,oldheight;
+    private boolean isPlaying = false;
+    private int oldwidth, oldheight, measureWid, measureHei;
     private Bitmap bitmapStart;
     private long startTime;
 
     public MyGifImageview(Context context) {
-        this(context,null);
+        this(context, null);
     }
 
     public MyGifImageview(Context context, AttributeSet attrs) {
-        this(context, attrs,0);
+        this(context, attrs, 0);
     }
 
     public MyGifImageview(Context context, AttributeSet attrs, int defStyleAttr) {
@@ -42,84 +42,78 @@ public class MyGifImageview extends ImageView {
     }
 
     private void setImgae(Context context, AttributeSet attrs, int defStyleAttr) {
-        TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.AppCompatImageView);
-        int resId=getresorceId(typedArray,context,attrs);
-        if (resId!=0) {
+        TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.MyGifImageview);
+        int resId = getresorceId(typedArray, context, attrs);
+        if (resId != 0) {
             InputStream inputStream = getResources().openRawResource(resId);
             mMovie = Movie.decodeStream(inputStream);
-            if (mMovie!=null) {
+            if (mMovie != null) {
                 //boolean isPlayAuto = typedArray.getBoolean(R.styleable.MyGifImageview_autoPlay, false);
                 Bitmap bitmap = BitmapFactory.decodeStream(inputStream);
                 oldwidth = bitmap.getWidth();
                 oldheight = bitmap.getHeight();
                 bitmap.recycle();
-                if (!Constant.IS_PLAY_VIDEO) {
-                    bitmapStart = BitmapFactory.decodeResource(getResources(), R.drawable.audio_gif);
-                }
+                bitmapStart = BitmapFactory.decodeResource(getResources(), R.drawable.audio_gif);
                 //Constant.staticBitmap=bitmapStart;
             }
         }
     }
 
-    public void isInit(boolean isPlay){
-        if (isPlay){
+    public void isInit(boolean isPlay) {
+        if (isPlay) {
             Log.i("name", "isInit: ");
-            isPlaying=isPlay;
+            isPlaying = isPlay;
             invalidate();
         }
     }
 
     @Override
     protected void onDraw(Canvas canvas) {
-        if (mMovie==null) {
+        if (mMovie == null) {
             super.onDraw(canvas);
-        }else{
-            if (Constant.IS_PLAY_VIDEO){
+        } else {
+            if (Constant.IS_PLAY_VIDEO) {
                 playMovie(canvas);
                 invalidate();
-            }else {
+            } else {
                 if (isPlaying) {
                     if (playMovie(canvas)) {
-                        isPlaying=false;
+                        isPlaying = false;
                     }
                     invalidate();
-                }else {
+                } else {
                     mMovie.setTime(0);
-                    mMovie.draw(canvas,0,0);
+                    mMovie.draw(canvas, 0, 0);
                     int offWidth = (oldwidth - bitmapStart.getWidth()) / 2;
                     int offHeight = (oldheight - bitmapStart.getHeight()) / 2;
-                    canvas.drawBitmap(bitmapStart,offWidth,offHeight,null);
+                    canvas.drawBitmap(bitmapStart, measureWid, measureHei, null);
+
                 }
             }
         }
     }
 
-    public void stop(){
-        bitmapStart=bitmapStart = BitmapFactory.decodeResource(getResources(), R.drawable.audio_gif);
-    }
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
-        if (mMovie != null) {
-            // 如果是GIF图片则重写设定PowerImageView的大小
-            setMeasuredDimension(oldwidth, oldheight);
-        }
+        measureHei = heightMeasureSpec;
+        measureWid = widthMeasureSpec;
     }
 
     private boolean playMovie(Canvas canvas) {
         long millis = SystemClock.uptimeMillis();
-        if (startTime==0) {
-            startTime=millis;
+        if (startTime == 0) {
+            startTime = millis;
         }
         int duration = mMovie.duration();
-        if (duration==0) {
-            duration=1000;
+        if (duration == 0) {
+            duration = 1000;
         }
         int time = (int) ((millis - startTime) % duration);
         mMovie.setTime(time);
-        mMovie.draw(canvas,0,0);
-        if ((millis-startTime)>=duration) {
-            startTime=0;
+        mMovie.draw(canvas, 0, 0);
+        if ((millis - startTime) >= duration) {
+            startTime = 0;
             return true;
         }
         return false;
@@ -136,8 +130,8 @@ public class MyGifImageview extends ImageView {
             e.printStackTrace();
         } catch (IllegalAccessException e) {
             e.printStackTrace();
-        }finally {
-            if (typedArray!=null){
+        } finally {
+            if (typedArray != null) {
                 typedArray.recycle();
             }
         }
