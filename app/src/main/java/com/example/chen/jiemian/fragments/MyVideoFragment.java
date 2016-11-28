@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.chen.jiemian.R;
+import com.handmark.pulltorefresh.library.PullToRefreshListView;
 
 /**
  * Created by chen on 2016/11/26.
@@ -15,7 +16,7 @@ import com.example.chen.jiemian.R;
 public class MyVideoFragment extends Fragment {
     public static String TAG = MyVideoFragment.class.getSimpleName();
     private View view;
-
+    private PullToRefreshListView refreshListView;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.my_video_fragment, container, false);
@@ -25,5 +26,10 @@ public class MyVideoFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+        initView();
+    }
+
+    private void initView() {
+
     }
 }
