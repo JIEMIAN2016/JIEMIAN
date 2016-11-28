@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <TextView
+        android:id="@+id/drawer_left_big"
+        android:layout_width="wrap_content"
+        android:layout_height="60dp"
+        android:text="你好"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        style="@style/text_drawer_main"/>
+    <TextView
+        android:id="@+id/drawer_left_smll"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginLeft="5dp"
+        style="@style/text_small_light"
+        android:text="我又能如何"/>
+</LinearLayout>

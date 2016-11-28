@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:id="@+id/main_left"
+    android:layout_gravity="left"
+    android:background="#fff"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="为独立思考的人群服务"
+                android:gravity="center"
+                android:background="@color/colorGray"/>
+
+        </LinearLayout>
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/drawer_left_recyclerview"
+            android:layout_width="match_parent"
+            android:layout_height="420dp"></android.support.v7.widget.RecyclerView>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="战略合作"
+                android:gravity="center"
+                android:background="@color/colorGray"/>
+
+        </LinearLayout>
+        <com.example.chen.jiemian.overwrite.MyListview
+            android:id="@+id/drawer_left_listview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        </com.example.chen.jiemian.overwrite.MyListview>
+    </LinearLayout>
+
+</ScrollView>

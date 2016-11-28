@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+        <RadioGroup
+            android:id="@+id/video_switch_fragment"
+            android:layout_width="160dp"
+            android:layout_height="20dp"
+            android:orientation="horizontal"
+            android:background="@drawable/back_circle_ring"
+            android:layout_centerInParent="true"
+            >
+            <RadioButton
+                android:id="@+id/video_video"
+                android:layout_width="78dp"
+                android:layout_height="18dp"
+                android:button="@null"
+                android:layout_gravity="center_vertical"
+                android:layout_margin="1dp"
+                android:background="@drawable/media_top_bakcground_selector"
+                android:layout_alignParentLeft="true"
+                />
+            <RadioButton
+                android:id="@+id/video_voice"
+                android:layout_width="78dp"
+                android:layout_height="18dp"
+                android:layout_gravity="center_vertical"
+                android:button="@null"
+                android:layout_margin="1dp"
+                android:background="@drawable/media_top_bakcground_selector"
+                />
+        </RadioGroup>
+        <com.example.chen.jiemian.overwrite.MyGifImageview
+            android:id="@+id/media_gif"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/audio_gif"
+            android:layout_alignParentRight="true"
+            android:layout_margin="10dp"/>
+    </RelativeLayout>
+    <FrameLayout
+        android:id="@+id/media_frame"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    </FrameLayout>
+
+</LinearLayout>
