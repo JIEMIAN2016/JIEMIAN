@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="30dp"
+    android:gravity="center_vertical"
+    android:paddingLeft="10dp"
+    android:paddingRight="10dp"
+    android:background="@color/colorWhite">
+
+    <TextView
+        android:id="@+id/main_news_add_all_name"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:text="首页"
+        android:textSize="15sp"
+        android:textColor="@color/colorBlack"/>
+
+    <TextView
+        android:id="@+id/main_news_add_all_en_name"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="21dp"
+        android:gravity="center"
+        android:text="Home"
+        android:textSize="15sp"
+        android:textColor="@color/colorGrayTwo"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@+id/main_news_add_all_name"
+        android:layout_toEndOf="@+id/main_news_add_all_name"
+        android:layout_marginStart="20dp" />
+
+    <ImageButton
+        android:id="@+id/main_news_add_all_imagebutton"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:src="@drawable/news_add_all_selector"
+        android:background="@color/colorWhite"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+</RelativeLayout>

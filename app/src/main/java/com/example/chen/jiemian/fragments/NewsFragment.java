@@ -1,11 +1,11 @@
 package com.example.chen.jiemian.fragments;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.widget.LinearLayoutManager;
@@ -22,6 +22,7 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.chen.jiemian.NewsAddActivity;
 import com.example.chen.jiemian.R;
 import com.example.chen.jiemian.adapters.DrawerListAdapter;
 import com.example.chen.jiemian.adapters.DrawerRecyclerAdapter;
@@ -64,13 +65,11 @@ public class NewsFragment extends Fragment implements View.OnClickListener, Stri
     private TabLayout mTabLayout;
     private ViewPager mvp;
     private NewsAdapter adapter;
-    private String aTitle;
-    private List<Test.ResultBean> tabtitles;
+    private ImageButton mNewsAdd;
 
     DbManager.DaoConfig daoConfig = new DbManager.DaoConfig()
             .setDbName("tabstitles")
             .setAllowTransaction(true);
-    private ImageButton mNewsAdd;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -104,16 +103,16 @@ public class NewsFragment extends Fragment implements View.OnClickListener, Stri
 //    }
 
     private void addTabtilte(List<Test.ResultBean> all) {
+        Log.e(TAG, "addTabtilte: "+all.size() );
+
         List<Fragment> data=new ArrayList<>();
         for (int i = 0; i < all.size(); i++) {
             mTabLayout.addTab(mTabLayout.newTab().setText(all.get(i).getName()));
             FirstFragment fragment = new FirstFragment();
-
-            FragmentManager fragmentManager = getFragmentManager();
-
             Bundle args = new Bundle();
-            Log.e("TAG", "addTabtilte: "+all.get(i).getId() );
-            args.putString("shuju",all.get(i).getId()+"");
+//            Log.e("TAG", "addTabtilte: "+all.get(i).getId() );
+            args.putString("shuju",all.get(i)+"");
+//            Log.e(TAG, "addTabtilte: "+(all.get(i)+""));
             fragment.setArguments(args);
             data.add(fragment);
         }
@@ -143,7 +142,7 @@ public class NewsFragment extends Fragment implements View.OnClickListener, Stri
                                 for (int i = 0; i < test.getResult().size(); i++) {
                                     List<Test.ResultBean> data = test.getResult().get(i);
                                     for (Test.ResultBean m : data) {
-                                        Log.e(TAG, "onResponse: " + m.getName() );
+//                                        Log.e(TAG, "onResponse: " + m.getName() );
 
 
                                     }
@@ -211,7 +210,7 @@ public class NewsFragment extends Fragment implements View.OnClickListener, Stri
 
         mTabLayout = (TabLayout) view.findViewById(R.id.news_tablayout);
         mvp = (ViewPager) view.findViewById(R.id.main_news_vp);
-        mvp.setOffscreenPageLimit(100);
+        mvp.setOffscreenPageLimit(36);
         mvp.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(mTabLayout));
         mTabLayout.addOnTabSelectedListener(new TabLayout.ViewPagerOnTabSelectedListener(mvp));
         adapter = new NewsAdapter(getChildFragmentManager(),null);
@@ -287,7 +286,8 @@ public class NewsFragment extends Fragment implements View.OnClickListener, Stri
                 callback(beans.getNotesUrl());
                 break;
             case R.id.news_add:
-                mDrawer1.openDrawer(Gravity.RIGHT);
+                Intent intent = new Intent(getActivity(), NewsAddActivity.class);
+                startActivity(intent);
                 break;
         }
 
