@@ -6,6 +6,7 @@
     <color name="colorWhite">#fff</color>
     <color name="colorBlack">#000</color>
     <color name="colorGray">#ddd</color>
+    <color name="colorVideoBackGray">#aaa</color>
     <color name="colorGrayTwo">#BFBFBF</color>
     <color name="colorRed">#F13722</color>
     <color name="defaultColor">#FAFAFA</color>

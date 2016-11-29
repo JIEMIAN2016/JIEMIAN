@@ -31,7 +31,7 @@ import com.example.chen.jiemian.constants.Urls;
 import com.example.chen.jiemian.fragments.newschildfragment.FirstFragment;
 import com.example.chen.jiemian.models.DrawerLeft;
 import com.example.chen.jiemian.models.newsaddlist.Test;
-import com.example.chen.jiemian.myinter.StringCallback;
+import com.example.chen.jiemian.myinter.MyCallback;
 import com.example.chen.jiemian.overwrite.MyListview;
 import com.google.gson.Gson;
 import com.zhy.http.okhttp.OkHttpUtils;
@@ -49,7 +49,7 @@ import okhttp3.Call;
 /**
  * Created by BYC on 2016/11/26.
  */
-public class NewsFragment extends Fragment implements View.OnClickListener, StringCallback, AdapterView.OnItemClickListener {
+public class NewsFragment extends Fragment implements View.OnClickListener, MyCallback, AdapterView.OnItemClickListener {
     public static String TAG = NewsFragment.class.getSimpleName();
     private View view;
 
@@ -302,6 +302,16 @@ public class NewsFragment extends Fragment implements View.OnClickListener, Stri
         } else {
             Toast.makeText(context, url, Toast.LENGTH_SHORT).show();
         }
+
+    }
+
+    @Override
+    public void intCallback(int num) {
+
+    }
+
+    @Override
+    public void ViewCallback(View item) {
 
     }
 

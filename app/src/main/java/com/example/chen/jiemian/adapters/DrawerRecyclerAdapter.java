@@ -4,7 +4,6 @@ import android.content.Context;
 import android.graphics.Color;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,11 +11,10 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.chen.jiemian.R;
 import com.example.chen.jiemian.models.DrawerLeft;
-import com.example.chen.jiemian.myinter.StringCallback;
+import com.example.chen.jiemian.myinter.MyCallback;
 
 import org.xutils.x;
 
@@ -30,7 +28,7 @@ public class DrawerRecyclerAdapter extends RecyclerView.Adapter<DrawerRecyclerAd
     private List<DrawerLeft.ResultBean.ChannelBean> channels;
     private LayoutInflater inflater;
     private String TAG = "name";
-    private StringCallback listener;
+    private MyCallback listener;
 
     public DrawerRecyclerAdapter(List<DrawerLeft.ResultBean.ChannelBean> channels, Context context) {
 
@@ -64,7 +62,7 @@ public class DrawerRecyclerAdapter extends RecyclerView.Adapter<DrawerRecyclerAd
     }
 
     public void getListener(Fragment context) {
-        listener = (StringCallback) context;
+        listener = (MyCallback) context;
     }
 
     @Override

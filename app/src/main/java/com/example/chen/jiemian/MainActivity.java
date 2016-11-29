@@ -4,36 +4,15 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.view.Gravity;
 import android.view.KeyEvent;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ImageView;
 import android.widget.RadioGroup;
-import android.widget.ScrollView;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.chen.jiemian.adapters.DrawerListAdapter;
-import com.example.chen.jiemian.adapters.DrawerRecyclerAdapter;
-import com.example.chen.jiemian.constants.Urls;
 import com.example.chen.jiemian.fragments.CommunityFragment;
 import com.example.chen.jiemian.fragments.MineFragment;
 import com.example.chen.jiemian.fragments.NewsFragment;
 import com.example.chen.jiemian.fragments.VideoFragment;
-import com.example.chen.jiemian.models.DrawerLeft;
-import com.example.chen.jiemian.myinter.StringCallback;
-import com.example.chen.jiemian.overwrite.MyListview;
-import com.google.gson.Gson;
-
-import org.xutils.common.Callback;
-import org.xutils.http.RequestParams;
-import org.xutils.x;
 
 public class MainActivity extends AppCompatActivity implements RadioGroup.OnCheckedChangeListener {
 

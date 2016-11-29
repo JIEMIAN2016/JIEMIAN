@@ -8,59 +8,130 @@
         android:layout_width="match_parent"
         android:layout_height="8dp"
         android:background="@color/colorWhite"/>
-    <VideoView
-        android:id="@+id/video_item_video"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="200dp" />
-    <TextView
-        android:id="@+id/video_item_title"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:maxLines="2"
-        android:layout_margin="10dp"
-        android:text="着重于长见识了，这嗯个死的还物流发货深V领SEO反击速度我会"
-        style="@style/text_drawer_main"/>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="20dp"
-        android:orientation="horizontal">
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:orientation="horizontal">
-            <ImageView
-                android:id="@+id/video_item_icon"
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:layout_marginLeft="10dp"
-                android:src="@mipmap/personal_center_unsign"/>
-            <TextView
-                android:id="@+id/video_item_author"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:text="汽车洋葱圈"
-                android:layout_marginLeft="10dp" />
-        </LinearLayout>
-        <TextView
-            android:id="@+id/video_item_updatetime"
-            android:layout_width="80dp"
-            android:layout_height="match_parent"
-            android:text="2小时前"
-            android:layout_marginLeft="10dp"/>
+        android:layout_height="220dp">
+
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
-            <TextView
-                android:id="@+id/video_item_comments"
-                android:layout_width="wrap_content"
+            android:layout_height="220dp">
+            <VideoView
+                android:id="@+id/video_item_video"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:drawableLeft="@mipmap/newslist_comment_icon"
-                android:text="1"
-                android:layout_alignParentRight="true"
-                android:drawablePadding="10dp"
-                android:layout_gravity="left"
-                android:layout_marginRight="10dp"/>
+                android:visibility="gone"/>
+            <ImageView
+                android:id="@+id/video_item_cover"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@mipmap/feed_cell_photo_default_big"
+                android:layout_below="@+id/video_item_video"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
+            <RelativeLayout
+                android:id="@+id/video_item_bottom"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_alignParentBottom="true"
+                android:background="@color/colorBlack"
+                android:alpha="0.3">
+                <CheckBox
+                    android:id="@+id/video_item_pause"
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
+                    android:checked="true"
+                    android:layout_marginLeft="10dp"
+                    android:layout_centerVertical="true"
+                    android:background="@drawable/video_play_selector"
+                    android:button="@null" />
+                <SeekBar
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginRight="80dp"/>
+                <ImageView
+                    android:id="@+id/video_item_fullscrenn"
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
+                    android:layout_marginRight="10dp"
+                    android:src="@mipmap/fullscreen"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"/>
+                <TextView
+                    android:id="@+id/video_item_time"
+                    android:layout_width="50dp"
+                    android:layout_height="match_parent"
+                    android:text="00：00"
+                    android:gravity="center"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="12sp"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="35dp" />
+            </RelativeLayout>
         </RelativeLayout>
 
-    </LinearLayout>
+        <ImageView
+            android:id="@+id/video_item_play"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_centerInParent="true"
+            android:src="@mipmap/big_video_play"/>
+    </RelativeLayout>
+   <LinearLayout
+       android:id="@+id/video_item_linear"
+       android:layout_width="match_parent"
+       android:layout_height="match_parent"
+       android:orientation="vertical">
+       <TextView
+           android:id="@+id/video_item_title"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:maxLines="2"
+           android:layout_margin="10dp"
+           android:text="着重于长见识了，这嗯个死的还物流发货深V领SEO反击速度我会"
+           style="@style/text_drawer_main"/>
+       <LinearLayout
+           android:layout_width="match_parent"
+           android:layout_height="20dp"
+           android:orientation="horizontal">
+           <LinearLayout
+               android:layout_width="wrap_content"
+               android:layout_height="match_parent"
+               android:orientation="horizontal">
+               <ImageView
+                   android:id="@+id/video_item_icon"
+                   android:layout_width="20dp"
+                   android:layout_height="20dp"
+                   android:layout_marginLeft="10dp"
+                   android:src="@mipmap/personal_center_unsign"/>
+               <TextView
+                   android:id="@+id/video_item_author"
+                   android:layout_width="wrap_content"
+                   android:layout_height="match_parent"
+                   android:text="汽车洋葱圈"
+                   android:layout_marginLeft="10dp" />
+           </LinearLayout>
+           <TextView
+               android:id="@+id/video_item_updatetime"
+               android:layout_width="80dp"
+               android:layout_height="match_parent"
+               android:text="2小时前"
+               android:layout_marginLeft="10dp"/>
+           <RelativeLayout
+               android:layout_width="match_parent"
+               android:layout_height="match_parent">
+               <TextView
+                   android:id="@+id/video_item_comments"
+                   android:layout_width="wrap_content"
+                   android:layout_height="match_parent"
+                   android:drawableLeft="@mipmap/newslist_comment_icon"
+                   android:text="1"
+                   android:layout_alignParentRight="true"
+                   android:drawablePadding="10dp"
+                   android:layout_gravity="left"
+                   android:layout_marginRight="10dp"/>
+           </RelativeLayout>
+
+       </LinearLayout>
+   </LinearLayout>
 </LinearLayout>
