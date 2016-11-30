@@ -9,13 +9,14 @@
         android:layout_height="8dp"
         android:background="@color/colorWhite"/>
     <RelativeLayout
+        android:id="@+id/video_item_playview"
         android:layout_width="match_parent"
-        android:layout_height="220dp">
+        android:layout_height="200dp">
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="220dp">
-            <VideoView
+            android:layout_height="200dp">
+            <SurfaceView
                 android:id="@+id/video_item_video"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -24,6 +25,7 @@
                 android:id="@+id/video_item_cover"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:scaleType="fitXY"
                 android:src="@mipmap/feed_cell_photo_default_big"
                 android:layout_below="@+id/video_item_video"
                 android:layout_alignParentLeft="true"
@@ -32,6 +34,7 @@
                 android:id="@+id/video_item_bottom"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
+                android:visibility="gone"
                 android:layout_alignParentBottom="true"
                 android:background="@color/colorBlack"
                 android:alpha="0.3">
@@ -44,10 +47,19 @@
                     android:layout_centerVertical="true"
                     android:background="@drawable/video_play_selector"
                     android:button="@null" />
+                <TextView
+                    android:id="@+id/video_item_current"
+                    android:layout_width="50dp"
+                    android:layout_height="match_parent"
+                    android:text="00:00"
+                    android:textColor="@color/colorWhite"
+                    android:layout_toRightOf="@id/video_item_pause"
+                    android:gravity="center"/>
                 <SeekBar
+                    android:id="@+id/video_item_progress"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_marginLeft="30dp"
+                    android:layout_marginLeft="70dp"
                     android:layout_marginRight="80dp"/>
                 <ImageView
                     android:id="@+id/video_item_fullscrenn"
@@ -87,7 +99,10 @@
            android:layout_width="match_parent"
            android:layout_height="wrap_content"
            android:maxLines="2"
-           android:layout_margin="10dp"
+           android:layout_marginLeft="10dp"
+           android:layout_marginRight="10dp"
+           android:layout_marginTop="5dp"
+           android:layout_marginBottom="5dp"
            android:text="着重于长见识了，这嗯个死的还物流发货深V领SEO反击速度我会"
            style="@style/text_drawer_main"/>
        <LinearLayout

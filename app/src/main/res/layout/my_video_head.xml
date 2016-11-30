@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/video_head"
+    android:layout_width="match_parent"
+    android:layout_height="220dp">
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/video_head_vp"
+        android:layout_width="match_parent"
+        android:layout_height="220dp">
+    </android.support.v4.view.ViewPager>
+
+    <TextView
+        android:id="@+id/video_head_title"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:textSize="16sp"
+        android:text="你好我是大数据v扫地好奥沙说爱德华撒女"
+        android:textColor="@color/colorWhite"
+        android:gravity="center_horizontal"
+        android:background="@color/colorBlack"
+        android:alpha="0.3"
+        android:layout_alignParentBottom="true"/>
+    <LinearLayout
+        android:id="@+id/video_head_dots"
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"
+        android:orientation="horizontal"
+        android:layout_margin="10dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"></LinearLayout>
+</RelativeLayout>
