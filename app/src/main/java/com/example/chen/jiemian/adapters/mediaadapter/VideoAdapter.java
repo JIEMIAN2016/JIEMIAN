@@ -2,6 +2,7 @@ package com.example.chen.jiemian.adapters.mediaadapter;
 
 import android.content.Context;
 import android.media.MediaPlayer;
+import android.net.Uri;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v4.app.Fragment;
@@ -47,7 +48,6 @@ public class VideoAdapter extends BaseAdapter implements View.OnClickListener, C
     private SurfaceHolder holder;
     private static final int BOTTOM_HIDE = 5000;
     private RelativeLayout controlBottom;
-
     private Handler mHandler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
@@ -59,8 +59,8 @@ public class VideoAdapter extends BaseAdapter implements View.OnClickListener, C
                     break;
                 case UPDATE_TIME:
                     //Log.i("name", "handleMessage: "+player.getCurrentPosition());
-                    current.setText(translate(player.getCurrentPosition()/1000));
-                    mHandler.sendEmptyMessageDelayed(UPDATE_TIME,1000);
+                    current.setText(translate(player.getCurrentPosition() / 1000));
+                    mHandler.sendEmptyMessageDelayed(UPDATE_TIME, 1000);
                     break;
 
             }
@@ -71,7 +71,8 @@ public class VideoAdapter extends BaseAdapter implements View.OnClickListener, C
     private ImageView img;
     private ImageView playIcon;
     private TextView current;
-    private boolean IS_PLAY=false;
+    private boolean IS_PLAY = false;
+    private boolean IS_FIRST = true;
 
     public VideoAdapter(List<VideoModel.ResultBean.RstBean> beanList, Context context) {
         if (beanList != null) {
@@ -171,10 +172,22 @@ public class VideoAdapter extends BaseAdapter implements View.OnClickListener, C
             case R.id.video_item_cover:
             case R.id.video_item_play:
             case R.id.video_item_video:
-                updateView(((View) v.getTag()));
+                if (IS_PLAY&& ((int)( (View) v.getTag()).getTag()==num)) {
+                    controlBottom.setVisibility(View.VISIBLE);
+                    mHandler.sendEmptyMessageDelayed(BOTTOM_HIDE, 5000);
+                }else {
+                    updateView(((View) v.getTag()));
+                }
+
                 break;
             case R.id.video_item_fullscrenn:
-                IS_PLAY=false;
+                IS_PLAY = false;
+                player.stop();
+                playView.setVisibility(View.GONE);
+                playView=null;
+                img.setVisibility(View.VISIBLE);
+                playIcon.setVisibility(View.VISIBLE);
+                mHandler.removeMessages(UPDATE_TIME);
                 listener.intCallback(num);
                 break;
             default:
@@ -190,7 +203,13 @@ public class VideoAdapter extends BaseAdapter implements View.OnClickListener, C
         if (playView == null) {
             //当SurfaceView为空，也就是第一次播放视频时初始化控件
             //num用于判断下次点击的位置与上次点击item是否有所改变
-            player=MediaPlayer.create(context,R.raw.nubia);
+            player=new MediaPlayer();
+            try {
+                player.setDataSource(context, Uri.parse("android.resource://" + context.getPackageName() + "/" + R.raw.nubia));
+                player.prepareAsync();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
             num = position;
             playView = (SurfaceView) item.findViewById(R.id.video_item_video);
             img = (ImageView) item.findViewById(R.id.video_item_cover);
@@ -201,7 +220,7 @@ public class VideoAdapter extends BaseAdapter implements View.OnClickListener, C
             img.setVisibility(View.GONE);
             playIcon.setVisibility(View.GONE);
             playView.setVisibility(View.VISIBLE);
-            Log.i("name", "updateView: null");
+            Log.i("video", "updateView: null");
 
         } else {
             //改变播放的视频时隐藏上一个view，并对当前即将播放的视频进行初始化
@@ -209,14 +228,18 @@ public class VideoAdapter extends BaseAdapter implements View.OnClickListener, C
                 num = position;
                 img.setVisibility(View.VISIBLE);
                 playIcon.setVisibility(View.VISIBLE);
+                Log.e("video", "updateView: " );
                 //网络查到必须走这三部才能实现player的充实刷新
-                if (IS_PLAY) {
+                if (player.isPlaying()) {
                     player.stop();
-                    player.reset();
-                }else {
-                    player.reset();
                 }
-                player=MediaPlayer.create(context,R.raw.nubia);
+                player.reset();
+                try {
+                    player.setDataSource(context, Uri.parse("android.resource://" + context.getPackageName() + "/" + R.raw.nubia));
+                    player.prepareAsync();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
                 playView.setVisibility(View.GONE);
                 if (controlBottom.getVisibility() == View.VISIBLE) {
                     controlBottom.setVisibility(View.GONE);
@@ -232,13 +255,11 @@ public class VideoAdapter extends BaseAdapter implements View.OnClickListener, C
                 controlBottom = ((RelativeLayout) item.findViewById(R.id.video_item_bottom));
                 controlBottom.setVisibility(View.VISIBLE);
                 mHandler.sendEmptyMessageDelayed(BOTTOM_HIDE, 5000);
-                Log.i("name", "updateView: isplay");
+                Log.i("video", "updateView: isplay");
 
-            } else {
-                controlBottom.setVisibility(View.VISIBLE);
-                mHandler.sendEmptyMessageDelayed(BOTTOM_HIDE, 5000);
             }
         }
+
         //item下方的可隐藏控制条进行初始化
         current = (TextView) item.findViewById(R.id.video_item_current);
         CheckBox pause = (CheckBox) item.findViewById(R.id.video_item_pause);
@@ -249,9 +270,12 @@ public class VideoAdapter extends BaseAdapter implements View.OnClickListener, C
         progress = (SeekBar) item.findViewById(R.id.video_item_progress);
         progress.setOnSeekBarChangeListener(this);
         totalTime = (TextView) item.findViewById(R.id.video_item_time);
+
+
+
         holder = playView.getHolder();
-        //holder.setType(SurfaceHolder.SURFACE_TYPE_PUSH_BUFFERS);
         holder.addCallback(this);
+
     }
 
     @Override
@@ -259,13 +283,13 @@ public class VideoAdapter extends BaseAdapter implements View.OnClickListener, C
         if (isChecked) {
             if (!IS_PLAY) {
                 player.start();
-                IS_PLAY=true;
-                mHandler.sendEmptyMessageDelayed(UPDATE_TIME,1000);
+                IS_PLAY = true;
+                mHandler.sendEmptyMessageDelayed(UPDATE_TIME, 1000);
             }
         } else {
             if (IS_PLAY) {
                 player.pause();
-                IS_PLAY=false;
+                IS_PLAY = false;
                 mHandler.removeMessages(UPDATE_TIME);
             }
         }
@@ -273,25 +297,29 @@ public class VideoAdapter extends BaseAdapter implements View.OnClickListener, C
 
     @Override
     public void surfaceCreated(SurfaceHolder holder) {
+//        Log.i("video", "surfaceCreated: holder=null" + (holder==null));
+        Log.e("video", "surfaceCreated: surface=null->" + (holder.getSurface()==null));
         player.setDisplay(holder);
-        int duration = player.getDuration();
-        progress.setMax(duration);
-        mHandler.sendEmptyMessageDelayed(UPDATE_TIME,1000);
-        totalTime.setText(translate(duration / 1000));
-        player.start();
-        IS_PLAY=true;
 
         player.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
             @Override
             public void onPrepared(MediaPlayer mp) {
-                //Log.i("name", "onPrepared: ");
+                Log.i("video", "onPrepared: ");
                 mp.start();
+                IS_FIRST = false;
+                int duration = player.getDuration();
+                progress.setMax(duration);
+                mHandler.sendEmptyMessageDelayed(UPDATE_TIME, 1000);
+                totalTime.setText(translate(duration / 1000));
+                IS_PLAY = true;
+
             }
         });
         player.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
             @Override
             public void onCompletion(MediaPlayer mp) {
-                player.release();
+                Log.i("video", "onCompletion: ");
+                //player.release();
                 mHandler.removeMessages(UPDATE_TIME);
             }
         });
@@ -302,47 +330,52 @@ public class VideoAdapter extends BaseAdapter implements View.OnClickListener, C
                 return false;
             }
         });
-    }
 
+
+    }
     @Override
     public void surfaceChanged(SurfaceHolder holder, int format, int width, int height) {
-
+        Log.e("video", "surfaceChanged: " );
     }
 
     @Override
     public void surfaceDestroyed(SurfaceHolder holder) {
-        playView=null;
-        IS_PLAY=false;
-        player.stop();
-        player.reset();
+        Log.e("video", "surfaceDestroyed: ");
+        IS_PLAY = false;
+//        player.stop();
+//        player.reset();
+//        playView = null;
         img.setVisibility(View.VISIBLE);
         playIcon.setVisibility(View.VISIBLE);
         mHandler.removeMessages(UPDATE_TIME);
     }
 
+
+
     @Override
     public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-        current.setText(translate(progress/1000));
+        current.setText(translate(progress / 1000));
     }
 
     @Override
     public void onStartTrackingTouch(SeekBar seekBar) {
-        current.setText(translate(seekBar.getProgress()/1000));
+        current.setText(translate(seekBar.getProgress() / 1000));
     }
 
     @Override
     public void onStopTrackingTouch(SeekBar seekBar) {
-        if (player!=null) {
+        if (player != null) {
             player.seekTo(seekBar.getProgress());
         }
     }
+
     private String translate(int progress) {
-        int sec=progress%60;
-        int min=progress/60;
-        if (sec<10){
-            return min+":0"+sec;
-        }else {
-            return min+":"+sec;
+        int sec = progress % 60;
+        int min = progress / 60;
+        if (sec < 10) {
+            return min + ":0" + sec;
+        } else {
+            return min + ":" + sec;
         }
     }
 

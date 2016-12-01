@@ -92,8 +92,6 @@ public class FullScreenActivity extends AppCompatActivity implements View.OnClic
         mVideo = (VideoView) findViewById(R.id.full_video);
 
         mHandler.sendEmptyMessageDelayed(HIDE_NOW,5000);
-        //controller = new MediaController(this);
-        //mVideo.setMediaController(controller);
         Uri parse = Uri.parse("android.resource://" + getPackageName() + "/" + R.raw.nubia);
         mVideo.setVideoURI(parse);
 
@@ -124,7 +122,6 @@ public class FullScreenActivity extends AppCompatActivity implements View.OnClic
             }
         });
 
-        Log.i("name", "initView: "+duration);
 
         mCurrent.setText("00:00");
         mProgress.setOnSeekBarChangeListener(this);

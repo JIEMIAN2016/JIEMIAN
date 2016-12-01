@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <View
+        android:id="@+id/voice_item2_blank"
+        android:layout_width="match_parent"
+        android:layout_height="5dp"
+        android:background="@color/colorGray" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/voice_item2_sort"
+            style="@style/text_drawer_main"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_marginLeft="10dp"
+            android:layout_weight="1"
+            android:drawableLeft="@mipmap/audio_detail_left_img"
+            android:drawablePadding="10dp"
+            android:gravity="center_vertical"
+            android:text="编辑精选"
+            android:textColor="#555" />
+
+        <TextView
+            android:id="@+id/voice_item2_change"
+            android:layout_width="90dp"
+            android:layout_height="match_parent"
+            android:drawableLeft="@mipmap/all_theme_change"
+            android:drawablePadding="10dp"
+            android:gravity="center_vertical"
+            android:text="换一批" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <com.example.chen.jiemian.overwrite.SquareImageView
+                android:id="@+id/voice_item2_img1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:src="@mipmap/feed_cell_video_default_small_c" />
+
+            <TextView
+                android:id="@+id/voice_item2_title1"
+                style="@style/text_drawer_main"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:gravity="center"
+                android:text="格林爆语" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <com.example.chen.jiemian.overwrite.SquareImageView
+                android:id="@+id/voice_item2_img2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:src="@mipmap/feed_cell_video_default_small_c" />
+
+            <TextView
+                android:id="@+id/voice_item2_title2"
+                style="@style/text_drawer_main"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:gravity="center"
+                android:text="格林爆语" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <com.example.chen.jiemian.overwrite.SquareImageView
+                android:id="@+id/voice_item2_img3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:src="@mipmap/feed_cell_video_default_small_c" />
+
+            <TextView
+                android:id="@+id/voice_item2_title3"
+                style="@style/text_drawer_main"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:gravity="center"
+                android:text="格林爆语" />
+        </LinearLayout>
+    </LinearLayout>
+
+
+</LinearLayout>
