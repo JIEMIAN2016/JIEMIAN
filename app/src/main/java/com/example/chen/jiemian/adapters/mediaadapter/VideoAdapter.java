@@ -298,7 +298,7 @@ public class VideoAdapter extends BaseAdapter implements View.OnClickListener, C
     @Override
     public void surfaceCreated(SurfaceHolder holder) {
 //        Log.i("video", "surfaceCreated: holder=null" + (holder==null));
-        Log.e("video", "surfaceCreated: surface=null->" + (holder.getSurface()==null));
+        //Log.e("video", "surfaceCreated: surface=null->" + (holder.getSurface()==null));
         player.setDisplay(holder);
 
         player.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
@@ -318,7 +318,7 @@ public class VideoAdapter extends BaseAdapter implements View.OnClickListener, C
         player.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
             @Override
             public void onCompletion(MediaPlayer mp) {
-                Log.i("video", "onCompletion: ");
+                //Log.i("video", "onCompletion: ");
                 //player.release();
                 mHandler.removeMessages(UPDATE_TIME);
             }
@@ -335,12 +335,12 @@ public class VideoAdapter extends BaseAdapter implements View.OnClickListener, C
     }
     @Override
     public void surfaceChanged(SurfaceHolder holder, int format, int width, int height) {
-        Log.e("video", "surfaceChanged: " );
+        //Log.e("video", "surfaceChanged: " );
     }
 
     @Override
     public void surfaceDestroyed(SurfaceHolder holder) {
-        Log.e("video", "surfaceDestroyed: ");
+        //Log.e("video", "surfaceDestroyed: ");
         IS_PLAY = false;
 //        player.stop();
 //        player.reset();
@@ -380,7 +380,7 @@ public class VideoAdapter extends BaseAdapter implements View.OnClickListener, C
     }
 
     public void resume() {
-        Log.i("name", "resume: ");
+        //Log.i("name", "resume: ");
         notifyDataSetChanged();
     }
 

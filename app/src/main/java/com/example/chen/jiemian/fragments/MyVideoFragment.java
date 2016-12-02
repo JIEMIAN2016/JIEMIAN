@@ -93,8 +93,6 @@ public class MyVideoFragment extends Fragment implements MyCallback, ViewPager.O
     }
 
     private void initView() {
-        bitmapNor = BitmapFactory.decodeResource(getResources(), R.mipmap.dot_normal);
-        bitmapSel = BitmapFactory.decodeResource(getResources(), R.mipmap.dot_selected);
         refreshListView = (PullToRefreshListView) view.findViewById(R.id.my_video_listview);
         setRefresh(refreshListView);
         refreshListView.setMode(PullToRefreshBase.Mode.BOTH);
@@ -132,7 +130,7 @@ public class MyVideoFragment extends Fragment implements MyCallback, ViewPager.O
         buttons = new ArrayList<>();
         for (int i = 0; i < pageNum; i++) {
             Button imageButton = new Button(getActivity());
-            imageButton.setLayoutParams(new ViewGroup.LayoutParams(bitmapNor.getWidth(), bitmapNor.getHeight()));
+            imageButton.setLayoutParams(new LinearLayout.LayoutParams(25,25));
             if (i == 0) {
                 imageButton.setBackgroundResource(R.mipmap.dot_selected);
             } else {
@@ -206,7 +204,7 @@ public class MyVideoFragment extends Fragment implements MyCallback, ViewPager.O
         this.position = position;
         if ( vpList.size() > 1) { //多于1，才会循环跳转
             if ( position < 1) { //首位之前，跳转到末尾（N）
-                position = pageNum; //注意这里是mList，而不是mViews
+                position = pageNum;
                 //Log.i("name", "onPageSelected: position"+position);
                 //Log.i("name", "onPageSelected: size"+vpList.size());
                 vp.setCurrentItem(position, false);

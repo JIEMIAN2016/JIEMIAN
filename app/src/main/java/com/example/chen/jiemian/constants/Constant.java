@@ -13,4 +13,5 @@ public class Constant {
     public static String VideoLastUpdate=null;
     public static String VoiceLastUpdate=null;
     public static Bitmap staticBitmap;
+    public static final int REFRESH=100000001;
 }

@@ -23,6 +23,7 @@
         android:textColor="#555" />
 
     <LinearLayout
+        android:id="@+id/voice_item_item"
         android:layout_width="match_parent"
         android:layout_height="70dp"
         android:layout_margin="10dp"
@@ -98,13 +99,23 @@
 
                 <TextView
                     android:id="@+id/voice_item_time"
-                    android:layout_width="match_parent"
+                    android:layout_width="80dp"
                     android:layout_height="match_parent"
                     android:drawableLeft="@mipmap/audio_play_time"
                     android:drawablePadding="10dp"
                     android:gravity="center_vertical"
-                    android:paddingLeft="10dp"
+                    android:paddingLeft="8dp"
                     android:text="03:36"
+                    android:textSize="11sp" />
+                <TextView
+                    android:id="@+id/voice_item_comment"
+                    android:layout_width="80dp"
+                    android:layout_height="match_parent"
+                    android:drawableLeft="@mipmap/praise_comment"
+                    android:drawablePadding="10dp"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="8dp"
+                    android:text="3"
                     android:textSize="11sp" />
             </LinearLayout>
 
